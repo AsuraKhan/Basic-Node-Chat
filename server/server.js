@@ -20,7 +20,7 @@ io.on('connection', (socket) => {
 	// 	text: 'text of emails from server',
 	// 	createdAt: 123
 	// });
-	socket.emit('newMessage', messages.generateMessage("Admin", "Wellcome,server using port" + port));
+	socket.emit('newMessage', messages.generateMessage("Admin", "Wellcome,server using port " + port));
 
 	socket.broadcast.emit("newMessage", messages.generateMessage("Admin", "New Guy in room"));
 
