@@ -15,6 +15,6 @@ socket.on('disconnect', function() {
 });
 
 socket.on('newMessage', function(message) {
-	console.log("New e-mail2: ", message);
+	console.log("Message: ", message);
 	document.getElementById("mensagem").innerHTML += message + "<br>";
 });

@@ -2,6 +2,7 @@ const path = require('path');
 const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
+const message = require('./utils/message');
 
 const publicPath = path.join(__dirname, '../public');
 const port = process.env.PORT || 3000;
@@ -19,10 +20,14 @@ io.on('connection', (socket) => {
 	// 	text: 'text of emails from server',
 	// 	createdAt: 123
 	// });
+	socket.emit('newMessage', message.generateMessage("Admin", "Wellcome Guy"));
+
+	socket.broadcast.emit("newMessage", message.generateMessage("Admin", "New Guy in room"));
 
 	socket.on('createMessage', (message) => {
-		console.log('createMessage', message);
-		io.emit('newMessage', message);
+		console.log('createMessage', message.generateMessage("Admin", message));
+		//io.emit('newMessage', message);
+		socket.broadcast.emit('newMessage', message.generateMessage("Admin", message));
 	});
 
 	socket.on('disconnect', () => {
