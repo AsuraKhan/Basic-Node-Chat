@@ -4,9 +4,20 @@
 	<title>Node Chat</title>
 </head>
 <body>
-	<p id="mensagem"></p>
+	<h1> Chat Super Cool do Asura Khan</h1>
+
+	<form id="message-form">
+		<input type="text" name="user" placeholder="Seu nome">
+		<p> Wellcome to my chat </p>
+		<ol id="messages" style="color:white;background:black;list-style: none;">
+		
+		</ol>
+		<input type="text" name="message" placeholder="Message">
+		<button>Send</button>
+	</form>	
 
 	<script src="/socket.io/socket.io.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 	<script src="js/index.js"></script>
 </body>
 </html>

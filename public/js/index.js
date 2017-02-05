@@ -15,6 +15,30 @@ socket.on('disconnect', function() {
 });
 
 socket.on('newMessage', function(message) {
-	console.log("Message: ", message);
-	document.getElementById("mensagem").innerHTML += message + "<br>";
+	console.log("Message: ", message.from, message.text);
+
+	var li = $('<li></li>');
+	li.text(`${message.from}: ${message.text}`);
+
+	$('#messages').append(li);
+});
+
+// socket.emit('createMessage', {
+// 		from: "Frank",
+// 		text: "Hi"
+// 	}, 
+// 	function(data){
+// 	console.log('got it from client - and - ', data);
+// });
+
+$('#message-form').on('submit', function(e){
+	e.preventDefault();
+
+	socket.emit('createMessage', {
+	from: $('[name=user]').val(), 
+	text: $('[name=message]').val()
+	},function(){
+		$('[name=message]').val(" ");
+	});
+
 });
