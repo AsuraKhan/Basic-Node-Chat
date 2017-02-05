@@ -19,8 +19,9 @@ socket.on('newMessage', function(message) {
 
 	var li = $('<li></li>');
 	li.text(`${message.from}: ${message.text}`);
-
 	$('#messages').append(li);
+    $('#messages').scrollTop( 99999 );
+
 });
 
 // socket.emit('createMessage', {
