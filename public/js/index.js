@@ -1,4 +1,6 @@
 var socket = io();
+var n = 0;
+var pageTitle = document.title;
 
 socket.on('connect', function() {
 	console.log("Connect to Server");
@@ -21,9 +23,13 @@ socket.on('newMessage', function(message) {
 	li.text(`${message.from}: ${message.text}`);
 
 	$('#messages').append(li);
+	
     $('#messages').scrollTop( 99999 );
     if(window.blur()){
+    	document.title = "(" + n++ + ") " + pageTitle;
     	notifyMe(`${message.from}: ${message.text}`);  	
+    }else{
+    	document.title = pageTitle;
     }
 });
 
