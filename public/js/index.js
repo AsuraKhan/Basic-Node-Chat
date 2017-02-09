@@ -17,7 +17,13 @@ socket.on('disconnect', function() {
 });
 
 socket.on('newNotification', function(message){
-	notifyMe(`${message.from}: ${message.text}`);
+	
+
+    if($(window).focus()){
+    	console.log("notificando corretamente");
+    	notifyMe(`${message.from}: ${message.text}`);
+    }
+    		
 });
 
 socket.on('newMessage', function(message) {
@@ -86,7 +92,7 @@ function notifyMe(msg) {
   else if (Notification.permission === "granted") {
     // If it's okay let's create a notification
     var notification = new Notification(msg);
-    setTimeout(notification.close.bind(notification), 2000);
+    setTimeout(notification.close.bind(notification), 4000);
   }
 
   // Otherwise, we need to ask the user for permission
@@ -95,7 +101,7 @@ function notifyMe(msg) {
       // If the user accepts, let's create a notification
       if (permission === "granted") {
         var notification = new Notification(msg);
-        setTimeout(notification.close.bind(notification), 2000);
+        setTimeout(notification.close.bind(notification), 4000);
 
       }
     });
