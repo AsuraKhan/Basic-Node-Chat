@@ -17,11 +17,9 @@ socket.on('disconnect', function() {
 });
 
 socket.on('newNotification', function(message){
-	
 
-    if($(window).focus()){
-    	console.log("notificando corretamente");
-    }else{
+    if($(window).blur()){
+    	console.log("notificando fora agora");
     	notifyMe(`${message.from}: ${message.text}`);
     }
     		
