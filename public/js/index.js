@@ -21,6 +21,7 @@ socket.on('newNotification', function(message){
 
     if($(window).focus()){
     	console.log("notificando corretamente");
+    }else{
     	notifyMe(`${message.from}: ${message.text}`);
     }
     		
