@@ -27,6 +27,8 @@ io.on('connection', (socket) => {
 	socket.on('createMessage', (message, callback) => {
 		console.log('createMessage', messages.generateMessage(message.from, message.text));
 		io.emit('newMessage', messages.generateMessage(message.from, message.text));
+		
+		socket.broadcast.emit('newNotification', messages.generateMessage(message.from, message.text))
 		callback('got it from server');
 
 		//socket.broadcast.emit('newMessage', message.generateMessage("Admin", message));

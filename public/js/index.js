@@ -16,10 +16,14 @@ socket.on('disconnect', function() {
 	console.log("Disconnected from server");
 });
 
+socket.on('newNotification', function(message){
+	notifyMe(`${message.from}: ${message.text}`);
+});
+
 socket.on('newMessage', function(message) {
 	console.log("Message: ", message.from, message.text);
 
-	var li = $('<li></li>');
+	var li = $('<li class="mensagem-unica"></li>');
 	li.text(`${message.from}: ${message.text}`);
 
 	$('#messages').append(li);
@@ -44,7 +48,10 @@ socket.on('newMessage', function(message) {
     		clearInterval(interval);
     	});
     });
-    
+
+    $('.mensagem-unica:last-child').change(function(){
+    	alert("changed");
+    });
     
 });
 
