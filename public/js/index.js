@@ -25,12 +25,27 @@ socket.on('newMessage', function(message) {
 	$('#messages').append(li);
 	
     $('#messages').scrollTop( 99999 );
-    if(window.blur()){
-    	document.title = "(" + n++ + ") " + pageTitle;
-    	notifyMe(`${message.from}: ${message.text}`);  	
-    }else{
-    	document.title = pageTitle;
-    }
+
+	if (message){
+		document.title = "(" + n++ + ") " + pageTitle;
+		  
+	   	
+	}else{
+		document.title = pageTitle;
+	}
+    
+    $(window).focus(function(){
+    	var interval = setInterval(function(){ 
+    		document.title = pageTitle;
+    		n = 0;
+    	}, 1000)
+
+    	$(window).blur(function(){
+    		clearInterval(interval);
+    	});
+    });
+    
+    
 });
 
 
