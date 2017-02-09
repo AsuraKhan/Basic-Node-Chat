@@ -38,7 +38,7 @@ socket.on('newMessage', function(message) {
     	var interval = setInterval(function(){ 
     		document.title = pageTitle;
     		n = 1;
-    	}, 1000)
+    	}, 100)
 
     	$(window).blur(function(){
     		clearInterval(interval);
